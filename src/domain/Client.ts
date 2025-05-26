@@ -12,6 +12,10 @@ export class Client extends BaseEntity {
         super(id, createdAt, updatedAt);
     }
 
+    get Id(): number {
+        return this.Id;
+    }
+
     get Name(): string {
         return this.name;
     }
@@ -22,6 +26,18 @@ export class Client extends BaseEntity {
 
     get Email(): string {
         return this.email;
+    }
+
+    get CreatedAt(): Date {
+        return this.CreatedAt;
+    }
+
+    get UpdatedAt(): Date {
+        return this.UpdatedAt;
+    }
+
+    set UpdatedAt(date: Date) {
+        this.UpdatedAt = date;
     }
 
     set Email(value: string) {
