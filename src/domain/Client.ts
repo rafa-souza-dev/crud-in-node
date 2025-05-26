@@ -13,7 +13,7 @@ export class Client extends BaseEntity {
     }
 
     get Id(): number {
-        return this.Id;
+        return this.id;
     }
 
     get Name(): string {
@@ -33,11 +33,11 @@ export class Client extends BaseEntity {
     }
 
     get UpdatedAt(): Date {
-        return this.UpdatedAt;
+        return this.updatedAt;
     }
 
     set UpdatedAt(date: Date) {
-        this.UpdatedAt = date;
+        this.updatedAt = date;
     }
 
     set Email(value: string) {

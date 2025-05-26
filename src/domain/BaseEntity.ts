@@ -1,7 +1,7 @@
 export class BaseEntity {
     constructor(
-        private id: number,
-        private createdAt: Date,
-        private updatedAt: Date
+        protected id: number,
+        protected createdAt: Date,
+        protected updatedAt: Date
     ) { }
 }
