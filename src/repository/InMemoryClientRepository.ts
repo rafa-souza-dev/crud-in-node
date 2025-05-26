@@ -6,8 +6,9 @@ export class InMemoryClientRepository implements ClientRepository {
     constructor(private store: Client[]) { }
 
     async create({ name, email, phone }: ClientCreateInput): Promise<Client> {
-        const id = this.store.length + 1
-        const client = new Client(id, new Date(), new Date(), name, email, phone)
+        const id = this.store.length + 1;
+        const client = new Client(id, new Date(), new Date(), name, email, phone);
+        this.store.push(client);
 
         return client
     }
