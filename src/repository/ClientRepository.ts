@@ -2,8 +2,8 @@ import { Client } from "../domain/Client.js";
 import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
 
 export interface ClientRepository {
-    create: (data: ClientCreateInput) => Client;
-    update: (data: ClientUpdateInput) => Client;
-    findById: (id: number) => Client | null;
-    findAll: () => Client[];
+    create: (data: ClientCreateInput) => Promise<Client>;
+    update: (data: ClientUpdateInput) => Promise<Client>;
+    findById: (id: number) => Promise<Client | null>;
+    findAll: () => Promise<Client[]>;
 }
