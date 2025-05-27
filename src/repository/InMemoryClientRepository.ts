@@ -18,8 +18,6 @@ export class InMemoryClientRepository implements ClientRepository {
     async update(id: number, data: ClientUpdateInput): Promise<Client> {
         const client = this.store.find((client: Client) => client.id === id)!;
 
-        // TODO: move this logic to domain
-        // client.UpdatedAt = new Date();
         client.name = data.name ?? client.name;
         client.email = data.email ?? client.email;
         client.phone = data.phone ?? client.phone;
