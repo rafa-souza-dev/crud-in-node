@@ -1,54 +1,33 @@
 import { BaseEntity } from "./BaseEntity.js";
+import { ClientProps } from "./Client.types.js";
 
 export class Client extends BaseEntity {
     constructor(
-        id: number,
-        createdAt: Date,
-        updatedAt: Date,
-        private name: string,
-        private email: string,
-        private phone: string
+        private clientProps: ClientProps,
     ) {
-        super(id, createdAt, updatedAt);
+        super({ id: clientProps.id, createdAt: clientProps.createdAt, updatedAt: clientProps.updatedAt });
+    }
+    get name(): string {
+        return this.clientProps.name;
     }
 
-    get Id(): number {
-        return this.id;
+    set name(value: string) {
+        this.clientProps.name = value;
     }
 
-    get Name(): string {
-        return this.name;
+    get email(): string {
+        return this.clientProps.email;
     }
 
-    set Name(value: string) {
-        this.name = value;
+    set email(value: string) {
+        this.clientProps.email = value;
     }
 
-    get Email(): string {
-        return this.email;
+    get phone(): string {
+        return this.clientProps.phone;
     }
 
-    get CreatedAt(): Date {
-        return this.CreatedAt;
-    }
-
-    get UpdatedAt(): Date {
-        return this.updatedAt;
-    }
-
-    set UpdatedAt(date: Date) {
-        this.updatedAt = date;
-    }
-
-    set Email(value: string) {
-        this.email = value;
-    }
-
-    get Phone(): string {
-        return this.phone;
-    }
-
-    set Phone(value: string) {
-        this.phone = value;
+    set phone(value: string) {
+        this.clientProps.phone = value;
     }
 }

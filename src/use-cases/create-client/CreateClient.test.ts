@@ -21,9 +21,9 @@ describe('CreateClient use case', () => {
                 const clients = await repository.findAll();
 
                 expect((clients).length).toBe(1)
-                expect((clients[0]).Name).toBe(data.name)
-                expect((clients[0]).Email).toBe(data.email)
-                expect((clients[0]).Phone).toBe(data.phone)
+                expect((clients[0]).name).toBe(data.name)
+                expect((clients[0]).email).toBe(data.email)
+                expect((clients[0]).phone).toBe(data.phone)
             })
         })
     });

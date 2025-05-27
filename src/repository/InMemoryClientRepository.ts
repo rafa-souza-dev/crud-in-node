@@ -7,25 +7,28 @@ export class InMemoryClientRepository implements ClientRepository {
 
     async create({ name, email, phone }: ClientCreateInput): Promise<Client> {
         const id = this.store.length + 1;
-        const client = new Client(id, new Date(), new Date(), name, email, phone);
+        const client = new Client({
+            id, createdAt: new Date(), updatedAt: new Date(), name, email, phone
+        });
         this.store.push(client);
 
         return client
     }
 
     async update(id: number, data: ClientUpdateInput): Promise<Client> {
-        const client = this.store.find((client: Client) => client.Id === id)!;
+        const client = this.store.find((client: Client) => client.id === id)!;
 
-        client.UpdatedAt = new Date();
-        client.Name = data.name ?? client.Name;
-        client.Email = data.email ?? client.Email;
-        client.Phone = data.phone ?? client.Phone;
+        // TODO: move this logic to domain
+        // client.UpdatedAt = new Date();
+        client.name = data.name ?? client.name;
+        client.email = data.email ?? client.email;
+        client.phone = data.phone ?? client.phone;
 
         return client
     }
 
     async findById(id: number): Promise<Client | null> {
-        return this.store.find((client) => client.Id === id) || null;
+        return this.store.find((client) => client.id === id) || null;
     }
 
     async findAll(): Promise<Client[]> {
