@@ -5,9 +5,9 @@ import { ClientRepository } from "../../repository/ClientRepository.js";
 export class CreateClient {
     constructor(private repository: ClientRepository) { }
 
-    async handle(data: ClientCreateInput): Promise<Client> {
+    async handle(data: ClientCreateInput): Promise<{ client: Client }> {
         const client = await this.repository.create(data);
 
-        return client;
+        return { client };
     }
 }
