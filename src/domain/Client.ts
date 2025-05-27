@@ -13,6 +13,7 @@ export class Client extends BaseEntity {
 
     set name(value: string) {
         this.clientProps.name = value;
+        this.updateCurrentDate();
     }
 
     get email(): string {
@@ -21,6 +22,7 @@ export class Client extends BaseEntity {
 
     set email(value: string) {
         this.clientProps.email = value;
+        this.updateCurrentDate();
     }
 
     get phone(): string {
@@ -29,5 +31,6 @@ export class Client extends BaseEntity {
 
     set phone(value: string) {
         this.clientProps.phone = value;
+        this.updateCurrentDate();
     }
 }

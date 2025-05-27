@@ -1,10 +1,18 @@
 import { BaseEntityProps } from "./BaseEntity.types.js";
 
 export class BaseEntity {
-    constructor(private props: BaseEntityProps) { };
+    constructor(private props: BaseEntityProps) {
+        this.props.createdAt = new Date();
+        this.props.updatedAt = new Date();
+    };
 
     get id(): number {
         return this.props.id;
+    }
+
+    set id(value: number) {
+        this.props.id = value;
+        this.updateCurrentDate();
     }
 
     get createdAt(): Date {
@@ -13,5 +21,9 @@ export class BaseEntity {
 
     get updatedAt(): Date {
         return this.props.updatedAt;
+    }
+
+    protected updateCurrentDate() {
+        this.props.updatedAt = new Date();
     }
 }
