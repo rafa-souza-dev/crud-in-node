@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "dev": "tsx src/main.ts"
+    "dev": "tsx --watch src/main.ts"
   },
   "keywords": [],
   "author": "",
