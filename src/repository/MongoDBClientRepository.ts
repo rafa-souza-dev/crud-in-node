@@ -4,6 +4,18 @@ import { Client } from "../domain/Client.js";
 import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
 
 export class MongoClientRepository implements ClientRepository {
+    private static instance: MongoClientRepository;
+
+    private constructor() { }
+
+    static getInstance(): MongoClientRepository {
+        if (!MongoClientRepository.instance) {
+            MongoClientRepository.instance = new MongoClientRepository();
+        }
+
+        return MongoClientRepository.instance;
+    }
+
     private toDomain(doc: ClientDocument): Client {
         return new Client({
             id: doc._id.toString(),

@@ -10,7 +10,7 @@ export function generateUpdateClientForTests(baseData: Client[] = []) {
 }
 
 export function generateUpdateClientDefault() {
-    const repository = new MongoClientRepository();
+    const repository = MongoClientRepository.getInstance();
 
     return new UpdateClient(repository);
 }

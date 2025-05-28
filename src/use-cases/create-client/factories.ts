@@ -10,7 +10,7 @@ export function generateCreateClientForTests(baseData: Client[] = []) {
 }
 
 export function generateCreateClientDefault() {
-    const repository = new MongoClientRepository();
+    const repository = MongoClientRepository.getInstance();
 
     return new CreateClient(repository);
 }

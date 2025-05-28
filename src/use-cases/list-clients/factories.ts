@@ -10,7 +10,7 @@ export function generateListClientsForTests(baseData: Client[] = []) {
 }
 
 export function generateListClientsDefault() {
-    const repository = new MongoClientRepository();
+    const repository = MongoClientRepository.getInstance();
 
     return new ListClients(repository);
 }
