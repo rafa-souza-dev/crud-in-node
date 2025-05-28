@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
+import { ClientNotFoundError } from '../../errors/ClientNotFoundError.js';
+
 export function globalErrorHandler(
     err: Error,
     req: Request,
@@ -8,7 +10,7 @@ export function globalErrorHandler(
 ): void {
     console.error(err.stack);
 
-    if (err.name === 'ClientNotFoundError') {
+    if (err instanceof ClientNotFoundError) {
         res.status(404).json({
             message: err.message,
             error: err,

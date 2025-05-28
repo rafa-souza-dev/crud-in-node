@@ -4,6 +4,7 @@ import { createClientController } from './controllers/clientClientController.js'
 import { globalErrorHandler } from './middlewares/globalErrorHandler.js';
 import { setupSwagger } from './swagger-ui/swagger.js';
 import { listClientsController } from './controllers/listClientsController.js';
+import { retrieveClientController } from './controllers/retrieveClientController.js';
 
 const router = Router();
 /**
@@ -64,6 +65,37 @@ router.post('/clients', createClientController);
  *                     $ref: '#/components/schemas/ClientResponse'
  */
 router.get('/clients', listClientsController)
+
+/**
+ * @openapi
+ * /api/clients/{id}:
+ *   get:
+ *     tags:
+ *       - Clients
+ *     summary: Busca um cliente pelo ID
+ *     description: Retorna os dados de um cliente específico com base no ID fornecido.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do cliente.
+ *         schema:
+ *           type: string
+ *           example: 64d45efb1234567890abc123
+ *     responses:
+ *       200:
+ *         description: Cliente encontrado com sucesso.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 client:
+ *                   $ref: '#/components/schemas/ClientResponse'
+ *       404:
+ *         description: Cliente não encontrado.
+ */
+router.get('/clients/:id', retrieveClientController)
 
 export const app = express();
 app.use(express.json());
