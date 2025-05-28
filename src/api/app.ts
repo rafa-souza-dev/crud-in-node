@@ -3,6 +3,7 @@ import express, { Router } from 'express';
 import { createClientController } from './controllers/clientClientController.js';
 import { globalErrorHandler } from './middlewares/globalErrorHandler.js';
 import { setupSwagger } from './swagger-ui/swagger.js';
+import { listClientsController } from './controllers/listClientsController.js';
 
 const router = Router();
 /**
@@ -40,6 +41,29 @@ const router = Router();
  *               $ref: '#/components/schemas/ZodErrorResponse'
  */
 router.post('/clients', createClientController);
+
+/**
+ * @openapi
+ * /api/clients:
+ *   get:
+ *     tags:
+ *       - Clients
+ *     summary: Lista todos os clientes
+ *     description: Retorna uma lista de todos os clientes cadastrados.
+ *     responses:
+ *       200:
+ *         description: Lista de clientes.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 clients:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/ClientResponse'
+ */
+router.get('/clients', listClientsController)
 
 export const app = express();
 app.use(express.json());
