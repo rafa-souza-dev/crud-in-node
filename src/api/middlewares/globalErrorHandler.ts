@@ -1,7 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodError } from 'zod';
-
-import { ClientNotFoundError } from '../../errors/ClientNotFoundError.js';
 
 export function globalErrorHandler(
     err: Error,
@@ -11,7 +8,7 @@ export function globalErrorHandler(
 ): void {
     console.error(err.stack);
 
-    if (err instanceof ClientNotFoundError) {
+    if (err.name === 'ClientNotFoundError') {
         res.status(404).json({
             message: err.message,
             error: err,
@@ -19,10 +16,10 @@ export function globalErrorHandler(
         return;
     }
 
-    if (err instanceof ZodError) {
+    if (err.name === 'ZodError') {
         res.status(422).json({
             message: 'Validation Error',
-            error: err.errors?.[0],
+            error: err,
         });
         return;
     }
