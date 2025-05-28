@@ -2,6 +2,7 @@ import { Client } from "../../domain/Client.js";
 import { ClientNotFoundError } from "../../errors/ClientNotFoundError.js";
 import { CacheService } from "../../infra/cache/CacheService.js";
 import { ClientRepository } from "../../repository/ClientRepository.js";
+import { parseWithDate } from "../../utils/parse.js";
 
 export class RetrieveClient {
     constructor(
@@ -15,7 +16,7 @@ export class RetrieveClient {
         const cachedResult = await this.getResultFromCache(CACHE_KEY);
 
         if (cachedResult) {
-            return { client: JSON.parse(cachedResult) }
+            return { client: parseWithDate(cachedResult) }
         }
 
         const client = await this.repository.findById(id);

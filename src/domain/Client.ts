@@ -48,4 +48,8 @@ export class Client extends BaseEntity {
     static serializeAll(clients: Client[]): ClientSerializer[] {
         return clients.map(this.serialize)
     }
+
+    toJSON() {
+        return this.clientProps;
+    }
 }

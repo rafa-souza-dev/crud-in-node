@@ -1,6 +1,7 @@
 import { Client } from "../../domain/Client.js";
 import { CacheService } from "../../infra/cache/CacheService.js";
 import { ClientRepository } from "../../repository/ClientRepository.js";
+import { parseWithDate } from "../../utils/parse.js";
 
 export class ListClients {
     constructor(
@@ -14,7 +15,7 @@ export class ListClients {
         const cachedResult = await this.getResultFromCache(CACHE_KEY);
 
         if (cachedResult) {
-            return { clients: JSON.parse(cachedResult) }
+            return { clients: parseWithDate(cachedResult) }
         }
 
         const clients = await this.repository.findAll();
