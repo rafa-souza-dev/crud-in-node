@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 import { Client } from "../domain/Client.js";
 import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
 import { ClientRepository } from "./ClientRepository.js";
@@ -6,7 +8,7 @@ export class InMemoryClientRepository implements ClientRepository {
     constructor(private store: Client[]) { }
 
     async create({ name, email, phone }: ClientCreateInput): Promise<Client> {
-        const id = this.store.length + 1;
+        const id = randomUUID();
         const client = new Client({
             id, createdAt: new Date(), updatedAt: new Date(), name, email, phone
         });
@@ -15,7 +17,7 @@ export class InMemoryClientRepository implements ClientRepository {
         return client
     }
 
-    async update(id: number, data: ClientUpdateInput): Promise<Client> {
+    async update(id: string, data: ClientUpdateInput): Promise<Client> {
         const client = this.store.find((client: Client) => client.id === id)!;
 
         client.name = data.name ?? client.name;
@@ -25,7 +27,7 @@ export class InMemoryClientRepository implements ClientRepository {
         return client
     }
 
-    async findById(id: number): Promise<Client | null> {
+    async findById(id: string): Promise<Client | null> {
         return this.store.find((client) => client.id === id) || null;
     }
 

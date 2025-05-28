@@ -5,7 +5,7 @@ import { BaseEntity } from "./BaseEntity.js";
 describe('BaseEntity class', () => {
     describe('with valid props', () => {
         const props: BaseEntityProps = {
-            id: 1,
+            id: 'custom_id',
             createdAt: new Date(),
             updatedAt: new Date()
         }
@@ -27,9 +27,9 @@ describe('BaseEntity class', () => {
 
                 await new Promise((res, _) => setTimeout(res, 100))
 
-                newEntity.id = 3
+                newEntity.id = 'custom_id_2'
 
-                expect(newEntity.id).toBe(3);
+                expect(newEntity.id).toBe('custom_id_2');
                 expect(Boolean(newEntity.createdAt)).toBe(true);
                 expect(oldUpdatedAt < newEntity.updatedAt).toBe(true);
             })

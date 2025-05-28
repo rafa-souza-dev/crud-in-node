@@ -1,5 +1,5 @@
 export type BaseEntityProps = {
-    id: number;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
 }

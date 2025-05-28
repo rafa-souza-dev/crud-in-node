@@ -6,7 +6,7 @@ import { RetrieveClient } from "../retrieve-client/RetrieveClient.js";
 export class UpdateClient {
     constructor(private repository: ClientRepository) { }
 
-    async handle(id: number, data: ClientUpdateInput): Promise<{ client: Client }> {
+    async handle(id: string, data: ClientUpdateInput): Promise<{ client: Client }> {
         await new RetrieveClient(this.repository).handle(id);
 
         const client = await this.repository.update(id, data)

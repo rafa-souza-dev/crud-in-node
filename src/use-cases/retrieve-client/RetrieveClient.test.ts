@@ -5,7 +5,7 @@ import { Client } from "../../domain/Client.js";
 import { RetrieveClient } from "./RetrieveClient.js";
 
 const repository = new InMemoryClientRepository([new Client({
-    id: 1,
+    id: 'custom_id',
     name: 'Rafael',
     createdAt: new Date(),
     email: 'rafael@email.com',
@@ -16,7 +16,7 @@ const useCase = new RetrieveClient(repository);
 
 describe('RetrieveClient use case', () => {
     describe('with existing client', () => {
-        const id = 1;
+        const id = 'custom_id';
 
         describe('when calls retrieve method', () => {
             it('should be able retrieve client with success', async () => {
@@ -28,7 +28,7 @@ describe('RetrieveClient use case', () => {
     })
 
     describe('without existing client', () => {
-        const id = 2;
+        const id = 'custom_id_2';
 
         describe('when calls retrieve method', () => {
             it('should throw an error if client not found', async () => {

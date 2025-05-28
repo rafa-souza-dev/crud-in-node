@@ -3,11 +3,11 @@ import { BaseEntityProps } from "./BaseEntity.types.js";
 export class BaseEntity {
     constructor(private props: BaseEntityProps) { };
 
-    get id(): number {
+    get id(): string {
         return this.props.id;
     }
 
-    set id(value: number) {
+    set id(value: string) {
         this.props.id = value;
         this.updateCurrentDate();
     }

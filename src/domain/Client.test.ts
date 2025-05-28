@@ -5,7 +5,7 @@ import { Client } from "./Client.js";
 describe('Client class', () => {
     describe('with valid props', () => {
         const props: ClientProps = {
-            id: 1,
+            id: 'custom_id',
             createdAt: new Date(),
             updatedAt: new Date(),
             email: 'juvenal@email.com',
@@ -30,9 +30,9 @@ describe('Client class', () => {
 
                 await new Promise((res, _) => setTimeout(res, 100))
 
-                newClient.id = 3
+                newClient.id = 'custom_id_2'
 
-                expect(newClient.id).toBe(3);
+                expect(newClient.id).toBe('custom_id_2');
                 expect(Boolean(newClient.createdAt)).toBe(true);
                 expect(oldUpdatedAt < newClient.updatedAt).toBe(true);
             })

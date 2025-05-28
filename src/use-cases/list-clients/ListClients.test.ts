@@ -6,7 +6,7 @@ import { ListClients } from "./ListClients.js";
 
 const repository = new InMemoryClientRepository([
     new Client({
-        id: 1,
+        id: 'custom_id',
         name: 'Rafael',
         createdAt: new Date(),
         email: 'rafael@email.com',
@@ -14,7 +14,7 @@ const repository = new InMemoryClientRepository([
         updatedAt: new Date()
     }),
     new Client({
-        id: 2,
+        id: 'custom_id_2',
         name: 'Juvenal',
         createdAt: new Date(),
         email: 'juvenal@email.com',
@@ -29,7 +29,7 @@ describe('ListClients use case', () => {
         const { clients } = await useCase.handle();
 
         expect(clients.length).toBe(2)
-        expect(clients[0].id).toBe(1)
-        expect(clients[1].id).toBe(2)
+        expect(clients[0].id).toBe('custom_id')
+        expect(clients[1].id).toBe('custom_id_2')
     })
 });
