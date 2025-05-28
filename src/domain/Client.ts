@@ -1,5 +1,5 @@
 import { BaseEntity } from "./BaseEntity.js";
-import { ClientProps } from "./Client.types.js";
+import { ClientProps, ClientSerializer } from "./Client.types.js";
 
 export class Client extends BaseEntity {
     constructor(
@@ -32,5 +32,20 @@ export class Client extends BaseEntity {
     set phone(value: string) {
         this.clientProps.phone = value;
         this.updateCurrentDate();
+    }
+
+    static serialize(client: Client): ClientSerializer {
+        return {
+            id: client.id,
+            name: client.name,
+            email: client.email,
+            phone: client.phone,
+            created_at: client.createdAt.toISOString(),
+            updated_at: client.updatedAt.toISOString()
+        }
+    }
+
+    static serializeAll(clients: Client[]): ClientSerializer[] {
+        return clients.map(this.serialize)
     }
 }
