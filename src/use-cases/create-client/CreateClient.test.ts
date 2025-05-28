@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { InMemoryClientRepository } from "../../repository/InMemoryClientRepository.js";
-import { CreateClient } from "./CreateClient.js";
 import { ClientCreateInput } from "../../domain/Client.types.js";
+import { generateCreateClientForTests } from "./factories.js";
+import { generateListClientsForTests } from "../list-clients/factories.js";
+import { Client } from "../../domain/Client.js";
 
-const repository = new InMemoryClientRepository([]);
-const useCase = new CreateClient(repository);
+const baseData: Client[] = [];
+const useCase = generateCreateClientForTests(baseData);
 
 describe('CreateClient use case', () => {
     describe('with valid data', () => {
@@ -18,7 +19,7 @@ describe('CreateClient use case', () => {
         describe('when calls create method', () => {
             it('should be able create client with success', async () => {
                 await useCase.handle(data);
-                const clients = await repository.findAll();
+                const { clients } = await generateListClientsForTests(baseData).handle();
 
                 expect((clients).length).toBe(1)
                 expect((clients[0]).name).toBe(data.name)

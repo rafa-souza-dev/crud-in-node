@@ -1,11 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { InMemoryClientRepository } from "../../repository/InMemoryClientRepository.js";
 import { ClientUpdateInput } from "../../domain/Client.types.js";
-import { UpdateClient } from "./UpdateClient.js";
 import { Client } from "../../domain/Client.js";
+import { generateUpdateClientForTests } from "./factories.js";
 
-const repository = new InMemoryClientRepository([new Client({
+const useCase = generateUpdateClientForTests([new Client({
     id: 'custom_id',
     name: 'Rafael',
     createdAt: new Date(),
@@ -13,7 +12,6 @@ const repository = new InMemoryClientRepository([new Client({
     phone: '8888888888',
     updatedAt: new Date()
 })]);
-const useCase = new UpdateClient(repository);
 
 describe('UpdateClient use case', () => {
     describe('with valid data', () => {

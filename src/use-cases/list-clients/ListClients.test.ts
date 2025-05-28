@@ -1,10 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { InMemoryClientRepository } from "../../repository/InMemoryClientRepository.js";
 import { Client } from "../../domain/Client.js";
-import { ListClients } from "./ListClients.js";
+import { generateListClientsForTests } from "./factories.js";
 
-const repository = new InMemoryClientRepository([
+const useCase = generateListClientsForTests([
     new Client({
         id: 'custom_id',
         name: 'Rafael',
@@ -22,7 +21,6 @@ const repository = new InMemoryClientRepository([
         updatedAt: new Date()
     })
 ]);
-const useCase = new ListClients(repository);
 
 describe('ListClients use case', () => {
     it('should be able to list registered clients', async () => {
