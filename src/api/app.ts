@@ -1,10 +1,12 @@
 import express, { Router } from 'express';
 
-import { createClientController } from './controllers/clientClientController.js';
+import { createClientController } from './controllers/createClientController.js';
 import { globalErrorHandler } from './middlewares/globalErrorHandler.js';
 import { setupSwagger } from './swagger-ui/swagger.js';
 import { listClientsController } from './controllers/listClientsController.js';
 import { retrieveClientController } from './controllers/retrieveClientController.js';
+import { updateClientController } from './controllers/updateClientController.js';
+import { validateIdFormat } from './middlewares/validateIdFormat.js';
 
 const router = Router();
 /**
@@ -95,7 +97,53 @@ router.get('/clients', listClientsController)
  *       404:
  *         description: Cliente não encontrado.
  */
-router.get('/clients/:id', retrieveClientController)
+router.get('/clients/:id', validateIdFormat, retrieveClientController)
+
+/**
+ * @openapi
+ * /api/clients/{id}:
+ *   put:
+ *     tags:
+ *       - Clients
+ *     summary: Atualiza um cliente pelo ID
+ *     description: Atualiza os dados de um cliente específico com base no ID fornecido.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do cliente.
+ *         schema:
+ *           type: string
+ *           example: 64d45efb1234567890abc123
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               client:
+ *                 $ref: '#/components/schemas/ClientCreateInput'
+ *     responses:
+ *       200:
+ *         description: Cliente atualizado com sucesso.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 client:
+ *                   $ref: '#/components/schemas/ClientResponse'
+ *       404:
+ *         description: Cliente não encontrado.
+ *       422:
+ *         description: Dados inválidos.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ZodErrorResponse'
+ */
+router.put('/clients/:id', validateIdFormat, updateClientController)
 
 export const app = express();
 app.use(express.json());
