@@ -1,12 +1,12 @@
 import express, { Router } from 'express';
 
-import { createClientController } from './controllers/createClientController.js';
-import { globalErrorHandler } from './middlewares/globalErrorHandler.js';
+import { createClientController } from './controllers/create-client-controller.js';
+import { globalErrorHandler } from './middlewares/global-error-handler.js';
 import { setupSwagger } from './swagger-ui/swagger.js';
-import { listClientsController } from './controllers/listClientsController.js';
-import { retrieveClientController } from './controllers/retrieveClientController.js';
-import { updateClientController } from './controllers/updateClientController.js';
-import { validateIdFormat } from './middlewares/validateIdFormat.js';
+import { listClientsController } from './controllers/list-clients-controller.js';
+import { retrieveClientController } from './controllers/retrieve-client-controller.js';
+import { updateClientController } from './controllers/update-client-controller.js';
+import { validateIdFormat } from './middlewares/validate-id-format.js';
 
 const router = Router();
 /**

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { z } from "zod/v4";
 
 import { generateUpdateClientDefault } from '../../../use-cases/update-client/factories.js';
-import { Client } from '../../../domain/Client.js';
+import { Client } from '../../../domain/client.js';
 
 export const updateClientController = async (req: Request, res: Response) => {
     const { id } = req.params;

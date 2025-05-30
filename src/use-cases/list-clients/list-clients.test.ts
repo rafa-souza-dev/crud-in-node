@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { Client } from "../../domain/Client.js";
+import { Client } from "../../domain/client.js";
 import { generateListClientsForTests } from "./factories.js";
 
 const useCase = generateListClientsForTests([

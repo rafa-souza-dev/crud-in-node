@@ -1,33 +1,28 @@
-import { Client } from "../../domain/Client.js";
-import { ClientNotFoundError } from "../../errors/ClientNotFoundError.js";
-import { CacheService } from "../../infra/cache/CacheService.js";
-import { ClientRepository } from "../../repository/ClientRepository.js";
+import { Client } from "../../domain/client.js";
+import { CacheService } from "../../infra/cache/cache-service.js";
+import { ClientRepository } from "../../repository/client-repository.js";
 import { parseWithDate } from "../../utils/parse.js";
 
-export class RetrieveClient {
+export class ListClients {
     constructor(
         private repository: ClientRepository,
         private cacheService: CacheService | null = null
     ) { }
 
-    async handle(id: string): Promise<{ client: Client }> {
-        const CACHE_KEY = `client:${id}`;
+    async handle(): Promise<{ clients: Client[] }> {
+        const CACHE_KEY = 'clients';
         const TTL = 30;
         const cachedResult = await this.getResultFromCache(CACHE_KEY);
 
         if (cachedResult) {
-            return { client: parseWithDate(cachedResult) }
+            return { clients: parseWithDate(cachedResult) }
         }
 
-        const client = await this.repository.findById(id);
+        const clients = await this.repository.findAll();
 
-        if (!client) {
-            throw new ClientNotFoundError();
-        }
+        await this.setInCache(CACHE_KEY, JSON.stringify(clients), TTL)
 
-        await this.setInCache(CACHE_KEY, JSON.stringify(client), TTL)
-
-        return { client };
+        return { clients };
     }
 
     private async getResultFromCache(key: string) {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { ClientUpdateInput } from "../../domain/Client.types.js";
-import { Client } from "../../domain/Client.js";
+import { ClientUpdateInput } from "../../domain/client.types.js";
+import { Client } from "../../domain/client.js";
 import { generateUpdateClientForTests } from "./factories.js";
 
 const useCase = generateUpdateClientForTests([new Client({

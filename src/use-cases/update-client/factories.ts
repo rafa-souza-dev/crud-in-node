@@ -1,7 +1,7 @@
-import { Client } from "../../domain/Client.js";
-import { InMemoryClientRepository } from "../../repository/InMemoryClientRepository.js";
-import { MongoClientRepository } from "../../repository/MongoDBClientRepository.js";
-import { UpdateClient } from "./UpdateClient.js";
+import { Client } from "../../domain/client.js";
+import { InMemoryClientRepository } from "../../repository/in-memory-client-repository.js";
+import { MongoClientRepository } from "../../repository/mongo-db-client-repository.js";
+import { UpdateClient } from "./update-client.js";
 
 export function generateUpdateClientForTests(baseData: Client[] = []) {
     const repository = new InMemoryClientRepository(baseData);

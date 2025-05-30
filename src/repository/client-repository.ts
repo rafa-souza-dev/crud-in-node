@@ -1,5 +1,5 @@
-import { Client } from "../domain/Client.js";
-import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
+import { Client } from "../domain/client.js";
+import { ClientCreateInput, ClientUpdateInput } from "../domain/client.types.js";
 
 export interface ClientRepository {
     create: (data: ClientCreateInput) => Promise<Client>;

@@ -1,6 +1,6 @@
-import { Client } from "../../domain/Client.js";
-import { ClientCreateInput } from "../../domain/Client.types.js";
-import { ClientRepository } from "../../repository/ClientRepository.js";
+import { Client } from "../../domain/client.js";
+import { ClientCreateInput } from "../../domain/client.types.js";
+import { ClientRepository } from "../../repository/client-repository.js";
 
 export class CreateClient {
     constructor(private repository: ClientRepository) { }

@@ -1,7 +1,7 @@
-import { ClientRepository } from "./ClientRepository.js";
+import { ClientRepository } from "./client-repository.js";
 import { ClientDocument, ClientModel } from "../infra/db/models.js";
-import { Client } from "../domain/Client.js";
-import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
+import { Client } from "../domain/client.js";
+import { ClientCreateInput, ClientUpdateInput } from "../domain/client.types.js";
 
 export class MongoClientRepository implements ClientRepository {
     private static instance: MongoClientRepository;

@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
 
-import { Client } from "../domain/Client.js";
-import { ClientCreateInput, ClientUpdateInput } from "../domain/Client.types.js";
-import { ClientRepository } from "./ClientRepository.js";
+import { Client } from "../domain/client.js";
+import { ClientCreateInput, ClientUpdateInput } from "../domain/client.types.js";
+import { ClientRepository } from "./client-repository.js";
 
 export class InMemoryClientRepository implements ClientRepository {
     constructor(private store: Client[]) { }

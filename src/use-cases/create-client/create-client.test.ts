@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { ClientCreateInput } from "../../domain/Client.types.js";
+import { ClientCreateInput } from "../../domain/client.types.js";
 import { generateCreateClientForTests } from "./factories.js";
 import { generateListClientsForTests } from "../list-clients/factories.js";
-import { Client } from "../../domain/Client.js";
+import { Client } from "../../domain/client.js";
 
 const baseData: Client[] = [];
 const useCase = generateCreateClientForTests(baseData);
