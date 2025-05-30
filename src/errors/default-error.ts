@@ -1,5 +1,3 @@
-import { z } from 'zod/v4';
-
 type DefaultErrorConstructor = {
     name: string
     message: string
