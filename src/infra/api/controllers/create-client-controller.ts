@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 
 import { generateCreateClientDefault } from '../../../use-cases/create-client/factories.js';
 import { Client } from '../../../domain/client.js';
+import { ValidationError } from '../../../errors/validation-error.js';
 
 export const createClientController = async (req: Request, res: Response) => {
     const clientCreateSchema = z.object({
@@ -15,8 +16,15 @@ export const createClientController = async (req: Request, res: Response) => {
             )
         })
     });
-    const data = clientCreateSchema.parse(req.body);
-    const { client } = await generateCreateClientDefault().handle(data.client);
+    const result = clientCreateSchema.safeParse(req.body);
+
+    if (!result.success) {
+        const details = result.error.issues.map(issue => issue.message);
+
+        throw new ValidationError({ message: 'Input inválido', details });
+    }
+
+    const { client } = await generateCreateClientDefault().handle(result.data.client);
 
     res.status(201).json({ client: Client.serialize(client) });
 };
