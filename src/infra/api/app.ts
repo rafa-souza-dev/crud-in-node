@@ -41,7 +41,13 @@ const router = Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ZodErrorResponse'
+ *               $ref: '#/components/schemas/ValidationErrorResponse'
+ *       500:
+ *         description: Erro interno no servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InternalServerErrorResponse'
  */
 router.post('/clients', createClientController);
 
@@ -65,6 +71,12 @@ router.post('/clients', createClientController);
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/ClientResponse'
+ *       500:
+ *         description: Erro interno no servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InternalServerErrorResponse'
  */
 router.get('/clients', listClientsController)
 
@@ -96,6 +108,16 @@ router.get('/clients', listClientsController)
  *                   $ref: '#/components/schemas/ClientResponse'
  *       404:
  *         description: Cliente não encontrado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/NotFoundErrorResponse'
+ *       500:
+ *         description: Erro interno no servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InternalServerErrorResponse'
  */
 router.get('/clients/:id', validateIdFormat, retrieveClientController)
 
@@ -134,14 +156,18 @@ router.get('/clients/:id', validateIdFormat, retrieveClientController)
  *               properties:
  *                 client:
  *                   $ref: '#/components/schemas/ClientResponse'
- *       404:
- *         description: Cliente não encontrado.
  *       422:
  *         description: Dados inválidos.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ZodErrorResponse'
+ *               $ref: '#/components/schemas/ValidationErrorResponse'
+ *       500:
+ *         description: Erro interno no servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InternalServerErrorResponse'
  */
 router.put('/clients/:id', validateIdFormat, updateClientController)
 

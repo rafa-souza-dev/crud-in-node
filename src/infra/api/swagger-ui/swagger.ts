@@ -31,11 +31,30 @@ const swaggerDefinition = {
                     updated_at: { type: 'string', format: 'date-time', example: '2024-08-23T10:25:30Z' },
                 },
             },
-            ZodErrorResponse: {
+            ValidationErrorResponse: {
                 type: 'object',
                 properties: {
-                    message: { type: 'string', example: 'Validation error' },
-                    error: { type: 'string', example: 'Email inválido' }
+                    name: { type: 'string', example: 'ValidationError' },
+                    message: { type: 'string', example: 'Input is not valid' },
+                    status_code: { type: 'integer', example: 422 },
+                    details: { type: 'array', example: ['Email inválido'] }
+                },
+            },
+            NotFoundErrorResponse: {
+                type: 'object',
+                properties: {
+                    name: { type: 'string', example: 'NotFoundError' },
+                    message: { type: 'string', example: 'Client not found' },
+                    status_code: { type: 'integer', example: 404 }
+                },
+            },
+            InternalServerErrorResponse: {
+                type: 'object',
+                properties: {
+                    name: { type: 'string', example: 'InternalServerError' },
+                    message: { type: 'string', example: 'Unknow error' },
+                    status_code: { type: 'integer', example: 500 },
+                    details: { type: 'array', example: ['Falha ao conectar-se ao banco de dados'] }
                 },
             },
         },
