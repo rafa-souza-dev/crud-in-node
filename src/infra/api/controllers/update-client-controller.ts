@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { z } from "zod/v4";
 
-import { generateUpdateClientDefault } from '../../../use-cases/update-client/factories.js';
-import { Client } from '../../../domain/client.js';
-import { ValidationError } from '../../../errors/validation-error.js';
+import { generateUpdateClientDefault } from '../../../use-cases/update-client/factories.ts';
+import { Client } from '../../../domain/client.ts';
+import { ValidationError } from '../../../errors/validation-error.ts';
 
 export const updateClientController = async (req: Request, res: Response) => {
     const { id } = req.params;

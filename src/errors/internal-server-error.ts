@@ -1,5 +1,5 @@
 import { z } from 'zod/v4';
-import { DefaultError } from './default-error.js';
+import { DefaultError } from './default-error.ts';
 
 export const internalServerErrorSchema = z.object({
     name: z.literal('InternalServerError'),

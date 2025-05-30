@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 
-import { ValidationError } from '../../../errors/validation-error.js';
+import { ValidationError } from '../../../errors/validation-error.ts';
 
 export function validateIdFormat(req: Request, res: Response, next: NextFunction): void {
     const { id } = req.params;

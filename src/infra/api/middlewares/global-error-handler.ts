@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { DefaultError } from '../../../errors/default-error.js';
-import { InternalServerError } from '../../../errors/internal-server-error.js';
+import { DefaultError } from '../../../errors/default-error.ts';
+import { InternalServerError } from '../../../errors/internal-server-error.ts';
 
 export function globalErrorHandler(
     err: Error,

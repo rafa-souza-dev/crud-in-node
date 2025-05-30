@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { z } from "zod/v4";
 
-import { generateCreateClientDefault } from '../../../use-cases/create-client/factories.js';
-import { Client } from '../../../domain/client.js';
-import { ValidationError } from '../../../errors/validation-error.js';
+import { generateCreateClientDefault } from '../../../use-cases/create-client/factories.ts';
+import { Client } from '../../../domain/client.ts';
+import { ValidationError } from '../../../errors/validation-error.ts';
 
 export const createClientController = async (req: Request, res: Response) => {
     const clientCreateSchema = z.object({

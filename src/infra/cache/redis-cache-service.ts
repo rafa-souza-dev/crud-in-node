@@ -1,6 +1,6 @@
 import { Redis } from 'ioredis';
 
-import { CacheService } from './cache-service.js';
+import { CacheService } from './cache-service.ts';
 
 export class RedisCacheService implements CacheService {
     private static instance: RedisCacheService | null = null;

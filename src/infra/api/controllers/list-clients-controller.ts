@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { generateListClientsDefault } from '../../../use-cases/list-clients/factories.js';
-import { Client } from '../../../domain/client.js';
+import { generateListClientsDefault } from '../../../use-cases/list-clients/factories.ts';
+import { Client } from '../../../domain/client.ts';
 
 export const listClientsController = async (_: Request, res: Response) => {
     const { clients } = await generateListClientsDefault().handle();

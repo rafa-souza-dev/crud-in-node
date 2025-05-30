@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseWithDate } from './parse.js';
+import { parseWithDate } from './parse.ts';
 
 interface Sample1 {
     createdAt: Date;

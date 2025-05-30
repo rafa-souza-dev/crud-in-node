@@ -1,6 +1,6 @@
-import { app } from "./infra/api/app.js";
-import { connectMongoDB } from "./infra/db/connect-mongo-db.js";
-import { startWorker } from "./infra/queue/rabbit-mq-worker.js";
+import { app } from "./infra/api/app.ts";
+import { connectMongoDB } from "./infra/db/connect-mongo-db.ts";
+import { startWorker } from "./infra/queue/rabbit-mq-worker.ts";
 
 const PORT = process.env.PORT || 3000;
 

@@ -9,7 +9,9 @@
       "ESNext.Collection",
       "ESNext.Iterator"
     ],
-    "module": "nodenext",
+    "module": "NodeNext",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "target": "es2022",
     "strict": true,
     "esModuleInterop": true,

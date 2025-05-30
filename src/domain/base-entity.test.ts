@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { BaseEntityProps } from "./base-entity.types.js";
-import { BaseEntity } from "./base-entity.js";
+import { BaseEntityProps } from "./base-entity.types.ts";
+import { BaseEntity } from "./base-entity.ts";
 
 describe('BaseEntity class', () => {
     describe('with valid props', () => {

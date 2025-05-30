@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { ClientProps } from "./client.types.js";
-import { Client } from "./client.js";
+import { ClientProps } from "./client.types.ts";
+import { Client } from "./client.ts";
 
 describe('Client class', () => {
     describe('with valid props', () => {

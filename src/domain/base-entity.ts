@@ -1,4 +1,4 @@
-import { BaseEntityProps } from "./base-entity.types.js";
+import { BaseEntityProps } from "./base-entity.types.ts";
 
 export class BaseEntity {
     constructor(private props: BaseEntityProps) { };

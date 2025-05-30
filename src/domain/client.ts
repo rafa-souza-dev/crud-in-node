@@ -1,5 +1,5 @@
-import { BaseEntity } from "./base-entity.js";
-import { ClientProps, ClientSerializer } from "./client.types.js";
+import { BaseEntity } from "./base-entity.ts";
+import { ClientProps, ClientSerializer } from "./client.types.ts";
 
 export class Client extends BaseEntity {
     constructor(

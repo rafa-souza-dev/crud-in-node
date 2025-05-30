@@ -1,6 +1,6 @@
 import amqp, { Channel, ChannelModel } from 'amqplib';
 
-import { QueueService } from './queue-service.js';
+import { QueueService } from './queue-service.ts';
 
 export class RabbitMQService implements QueueService {
     private static instance: RabbitMQService | null = null;
