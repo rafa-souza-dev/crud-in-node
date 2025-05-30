@@ -88,6 +88,44 @@ export interface ClientRepository {
 
 De novo, a aplicação continua dependendo de abstrações. Não importa se é *mongodb* ou *postgres*.
 
+### MongoDB com mongoose
+
+Utilizei o pacote **mongoose** para fazer a integração de node.js com mongodb. Apesar do mongoose gerar seus próprios modelos, isso não impede de criar uma classe capaz de implementar a interface base **ClientRepository**. Ficou assim:
+
+```typescript
+export class MongoClientRepository implements ClientRepository {
+    ...
+
+    async create(data: ClientCreateInput): Promise<Client> {
+        const clientDoc = new ClientModel(data);
+        const saved = await clientDoc.save();
+
+        return this.toDomain(saved);
+    }
+
+    async update(id: string, data: ClientUpdateInput): Promise<Client> {
+        const updated = await ClientModel.findByIdAndUpdate(id, data, { new: true });
+
+        return this.toDomain(updated!);
+    }
+    ...
+```
+
+Sempre convertendo os objetos para a classe **Client**. Na arquitetura limpa, as entidades são o centro de tudo. Isso foi feito com uma função chamada **toDomain**, o nome expressa relação com domínio:
+
+```typescript
+private toDomain(doc: ClientDocument): Client {
+    return new Client({
+        id: doc._id.toString(),
+        name: doc.name,
+        email: doc.email,
+        phone: doc.phone,
+        createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt
+    });
+}
+```
+
 ### Singleton pattern
 Foi usado o padrão de projeto **singleton** com o objetivo de usar sempre o mesmo objeto em memória nos repositórios concretos. Conversa muito bem com padrão de repositórios.
 
