@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { z } from "zod/v4";
 
-import { generateCreateClientDefault } from '../../use-cases/create-client/factories.js';
-import { Client } from '../../domain/Client.js';
+import { generateCreateClientDefault } from '../../../use-cases/create-client/factories.js';
+import { Client } from '../../../domain/Client.js';
 
 export const createClientController = async (req: Request, res: Response) => {
     const clientCreateSchema = z.object({

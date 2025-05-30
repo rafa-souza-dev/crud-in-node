@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ClientNotFoundError } from '../../errors/ClientNotFoundError.js';
+import { ClientNotFoundError } from '../../../errors/ClientNotFoundError.js';
 
 export function globalErrorHandler(
     err: Error,

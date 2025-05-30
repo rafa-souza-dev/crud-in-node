@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { Client } from '../../domain/Client.js';
-import { generateRetrieveClientDefault } from '../../use-cases/retrieve-client/factories.js';
+import { generateRetrieveClientDefault } from '../../../use-cases/retrieve-client/factories.js';
+import { Client } from '../../../domain/Client.js';
 
 export const retrieveClientController = async (req: Request, res: Response) => {
     const { id } = req.params;

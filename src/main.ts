@@ -1,4 +1,4 @@
-import { app } from "./api/app.js";
+import { app } from "./infra/api/app.js";
 import { connectMongoDB } from "./infra/db/connectMongoDB.js";
 
 const PORT = process.env.PORT || 3000;
