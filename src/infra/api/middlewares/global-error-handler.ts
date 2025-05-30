@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { DefaultError } from '../../../errors/default-error.ts';
 import { InternalServerError } from '../../../errors/internal-server-error.ts';
+import { logger } from '../../logger/index.ts';
 
 export function globalErrorHandler(
     err: Error,
@@ -9,7 +10,7 @@ export function globalErrorHandler(
     res: Response,
     next: NextFunction
 ): void {
-    console.error(err.stack);
+    logger.error(err.stack);
 
     if (err instanceof DefaultError) {
         const errorResponse = err.toResponse();
@@ -21,7 +22,7 @@ export function globalErrorHandler(
 
     const internalError = new InternalServerError({ cause: err })
     const internalErrorResponse = internalError.toResponse()
-    console.error(internalError)
+    logger.error(internalError)
 
     res.status(internalErrorResponse.status_code).send(internalErrorResponse);
 }

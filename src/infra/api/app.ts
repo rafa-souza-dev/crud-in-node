@@ -1,4 +1,6 @@
 import express, { Router } from 'express';
+import { pino } from 'pino';
+import { pinoHttp } from 'pino-http';
 
 import { createClientController } from './controllers/create-client-controller.ts';
 import { globalErrorHandler } from './middlewares/global-error-handler.ts';
@@ -171,7 +173,17 @@ router.get('/clients/:id', validateIdFormat, retrieveClientController)
  */
 router.put('/clients/:id', validateIdFormat, updateClientController)
 
+const logger = pino({
+    level: 'info',
+    transport: {
+        target: 'pino-pretty',
+        options: { colorize: true }
+    }
+});
+
 export const app = express();
+
+app.use(pinoHttp({ logger }));
 app.use(express.json());
 app.use('/api', router);
 setupSwagger(app);

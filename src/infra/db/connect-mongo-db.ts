@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import mongoose from 'mongoose';
+import { logger } from '../logger/index.ts';
 
 const mongoDbURL = process.env.MONGO_DB_URL;
 
@@ -10,9 +11,9 @@ export const connectMongoDB = async () => {
 
     try {
         await mongoose.connect(mongoDbURL);
-        console.log('MongoDB Connected');
+        logger.info('MongoDB Connected');
     } catch (err) {
-        console.error('MongoDB connection error:', err);
+        logger.error(`MongoDB connection error: ${err}`);
         throw err;
     }
 };
