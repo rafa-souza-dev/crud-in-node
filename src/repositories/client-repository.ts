@@ -5,5 +5,6 @@ export interface ClientRepository {
     create: (data: ClientCreateInput) => Promise<Client>;
     update: (id: string, data: ClientUpdateInput) => Promise<Client>;
     findById: (id: string) => Promise<Client | null>;
+    findByEmailOrPhone: (email?: string, phone?: string) => Promise<Client | null>;
     findAll: () => Promise<Client[]>;
 }

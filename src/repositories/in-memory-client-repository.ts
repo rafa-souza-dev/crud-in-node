@@ -31,6 +31,19 @@ export class InMemoryClientRepository implements ClientRepository {
         return this.store.find((client) => client.id === id) || null;
     }
 
+    async findByEmailOrPhone(email?: string, phone?: string): Promise<Client | null> {
+        return this.store.find((client) => {
+            if (email && phone) {
+                return client.email === email || client.phone === phone;
+            } else if (email && !phone) {
+                return client.email === email;
+            } else if (phone && !email) {
+                return client.phone === phone;
+            }
+            return false;
+        }) || null;
+    }
+
     async findAll(): Promise<Client[]> {
         return this.store;
     }

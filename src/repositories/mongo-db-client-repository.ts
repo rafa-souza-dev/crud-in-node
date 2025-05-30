@@ -51,4 +51,21 @@ export class MongoClientRepository implements ClientRepository {
 
         return clients.map(this.toDomain);
     }
+
+    async findByEmailOrPhone(email?: string, phone?: string): Promise<Client | null> {
+        const conditions = [];
+
+        if (email) conditions.push({ email });
+        if (phone) conditions.push({ phone });
+
+        if (conditions.length === 0) {
+            return null;
+        }
+
+        const clientDoc = await ClientModel.findOne({
+            $or: conditions
+        });
+
+        return clientDoc ? this.toDomain(clientDoc) : null;
+    }
 }

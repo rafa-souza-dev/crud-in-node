@@ -44,6 +44,12 @@ const router = Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ValidationErrorResponse'
+ *       409:
+ *         description: Cliente já cadastrado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ConflictErrorResponse'
  *       500:
  *         description: Erro interno no servidor.
  *         content:
@@ -164,6 +170,12 @@ router.get('/clients/:id', validateIdFormat, retrieveClientController)
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ValidationErrorResponse'
+ *       409:
+ *         description: Cliente já cadastrado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ConflictErrorResponse'
  *       500:
  *         description: Erro interno no servidor.
  *         content:

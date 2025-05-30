@@ -44,7 +44,7 @@ const swaggerDefinition = {
                 type: 'object',
                 properties: {
                     name: { type: 'string', example: 'NotFoundError' },
-                    message: { type: 'string', example: 'Client not found' },
+                    message: { type: 'string', example: 'Cliente não encontrado' },
                     status_code: { type: 'integer', example: 404 }
                 },
             },
@@ -55,6 +55,14 @@ const swaggerDefinition = {
                     message: { type: 'string', example: 'Unknow error' },
                     status_code: { type: 'integer', example: 500 },
                     details: { type: 'array', example: ['Falha ao conectar-se ao banco de dados'] }
+                },
+            },
+            ConflictErrorResponse: {
+                type: 'object',
+                properties: {
+                    name: { type: 'string', example: 'ConflictError' },
+                    message: { type: 'string', example: 'Cliente já está cadastrado' },
+                    status_code: { type: 'integer', example: 409 },
                 },
             },
         },

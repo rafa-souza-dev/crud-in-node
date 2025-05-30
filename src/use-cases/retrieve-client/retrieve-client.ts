@@ -22,7 +22,7 @@ export class RetrieveClient {
         const client = await this.repository.findById(id);
 
         if (!client) {
-            throw new NotFoundError({ message: 'Client not found' });
+            throw new NotFoundError({ message: 'Cliente não encontrado' });
         }
 
         await this.setInCache(CACHE_KEY, JSON.stringify(client), TTL)
