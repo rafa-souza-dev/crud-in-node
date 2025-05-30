@@ -24,7 +24,9 @@ export const createClientController = async (req: Request, res: Response) => {
         throw new ValidationError({ message: 'Input inválido', details });
     }
 
-    const { client } = await generateCreateClientDefault().handle(result.data.client);
+    const useCase = await generateCreateClientDefault();
+
+    const { client } = await useCase.handle(result.data.client);
 
     res.status(201).json({ client: Client.serialize(client) });
 };

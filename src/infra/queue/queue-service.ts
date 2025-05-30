@@ -1,3 +1,4 @@
 export interface QueueService {
-    sendToQueue(queue: string, message: string): Promise<void>;
+    sendToQueue: (message: string, queue?: string) => Promise<void>;
+    consume: (callback: (msg: string) => void, queue?: string) => Promise<void>
 }

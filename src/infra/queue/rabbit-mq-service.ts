@@ -6,6 +6,7 @@ export class RabbitMQService implements QueueService {
     private static instance: RabbitMQService | null = null;
     private connection!: ChannelModel;
     private channel!: Channel;
+    private queue = 'clients_queue';
 
     private constructor(private url: string = 'amqp://guest:guest@localhost:5672') { }
 
@@ -23,13 +24,13 @@ export class RabbitMQService implements QueueService {
         this.channel = await this.connection.createChannel();
     }
 
-    public async sendToQueue(queue: string, message: string): Promise<void> {
+    public async sendToQueue(message: string, queue: string = this.queue): Promise<void> {
         await this.channel.assertQueue(queue, { durable: true });
 
         this.channel.sendToQueue(queue, Buffer.from(message));
     }
 
-    public async consume(queue: string, callback: (msg: string) => void): Promise<void> {
+    public async consume(callback: (msg: string) => void, queue: string = this.queue): Promise<void> {
         await this.channel.assertQueue(queue, { durable: true });
 
         this.channel.consume(queue, (msg) => {
