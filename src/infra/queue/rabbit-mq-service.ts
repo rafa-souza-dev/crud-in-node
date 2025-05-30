@@ -2,15 +2,17 @@ import amqp, { Channel, ChannelModel } from 'amqplib';
 
 import { QueueService } from './queue-service.ts';
 
+const rabbitMqUrl = process.env.RABBIT_MQ_URL ?? 'amqp://guest:guest@rabbitmq:5672'
+
 export class RabbitMQService implements QueueService {
     private static instance: RabbitMQService | null = null;
     private connection!: ChannelModel;
     private channel!: Channel;
     private queue = 'clients_queue';
 
-    private constructor(private url: string = 'amqp://guest:guest@localhost:5672') { }
+    private constructor(private url: string = rabbitMqUrl) { }
 
-    public static async getInstance(url: string = 'amqp://guest:guest@localhost:5672'): Promise<RabbitMQService> {
+    public static async getInstance(url: string = rabbitMqUrl): Promise<RabbitMQService> {
         if (!RabbitMQService.instance) {
             const instance = new RabbitMQService(url);
             await instance.connect();

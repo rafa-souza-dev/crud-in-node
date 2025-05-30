@@ -2,20 +2,23 @@ import { Redis } from 'ioredis';
 
 import { CacheService } from './cache-service.ts';
 
+const redisHost = process.env.REDIS_HOST ?? 'redis'
+const redisPort = Number(process.env.REDIS_PORT ?? 6379)
+
 export class RedisCacheService implements CacheService {
     private static instance: RedisCacheService | null = null;
     private redis: Redis;
 
-    private constructor(redisHost = 'localhost', redisPort = 6379) {
+    private constructor(host = redisHost, port = redisPort) {
         this.redis = new Redis({
-            host: redisHost,
-            port: redisPort,
+            host,
+            port,
         });
     }
 
-    public static getInstance(redisHost = 'localhost', redisPort = 6379): RedisCacheService {
+    public static getInstance(host = redisHost, port = redisPort): RedisCacheService {
         if (!RedisCacheService.instance) {
-            RedisCacheService.instance = new RedisCacheService(redisHost, redisPort);
+            RedisCacheService.instance = new RedisCacheService(host, port);
         }
         return RedisCacheService.instance;
     }
