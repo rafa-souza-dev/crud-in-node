@@ -1,6 +1,6 @@
 import { Client } from "../../domain/client.js";
 import { ClientUpdateInput } from "../../domain/client.types.js";
-import { ClientRepository } from "../../repository/client-repository.js";
+import { ClientRepository } from "../../repositories/client-repository.js";
 import { RetrieveClient } from "../retrieve-client/retrieve-client.js";
 
 export class UpdateClient {

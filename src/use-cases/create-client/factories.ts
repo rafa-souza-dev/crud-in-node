@@ -1,6 +1,6 @@
 import { Client } from "../../domain/client.js";
-import { InMemoryClientRepository } from "../../repository/in-memory-client-repository.js";
-import { MongoClientRepository } from "../../repository/mongo-db-client-repository.js";
+import { InMemoryClientRepository } from "../../repositories/in-memory-client-repository.js";
+import { MongoClientRepository } from "../../repositories/mongo-db-client-repository.js";
 import { CreateClient } from "./create-client.js";
 
 export function generateCreateClientForTests(baseData: Client[] = []) {

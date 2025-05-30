@@ -1,6 +1,6 @@
 import { Client } from "../../domain/client.js";
 import { CacheService } from "../../infra/cache/cache-service.js";
-import { ClientRepository } from "../../repository/client-repository.js";
+import { ClientRepository } from "../../repositories/client-repository.js";
 import { parseWithDate } from "../../utils/parse.js";
 
 export class ListClients {
