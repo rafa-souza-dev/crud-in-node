@@ -1,5 +1,5 @@
 import { Client } from "../../domain/client.js";
-import { ClientNotFoundError } from "../../errors/client-not-found-error.js";
+import { NotFoundError } from "../../errors/not-found-error.js";
 import { CacheService } from "../../infra/cache/cache-service.js";
 import { ClientRepository } from "../../repositories/client-repository.js";
 import { parseWithDate } from "../../utils/parse.js";
@@ -22,7 +22,7 @@ export class RetrieveClient {
         const client = await this.repository.findById(id);
 
         if (!client) {
-            throw new ClientNotFoundError();
+            throw new NotFoundError({ message: 'Client not found' });
         }
 
         await this.setInCache(CACHE_KEY, JSON.stringify(client), TTL)

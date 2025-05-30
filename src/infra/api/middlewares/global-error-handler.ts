@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ClientNotFoundError } from '../../../errors/client-not-found-error.js';
+import { DefaultError } from '../../../errors/default-error.js';
+import { InternalServerError } from '../../../errors/internal-server-error.js';
 
 export function globalErrorHandler(
     err: Error,
@@ -10,24 +11,17 @@ export function globalErrorHandler(
 ): void {
     console.error(err.stack);
 
-    if (err instanceof ClientNotFoundError) {
-        res.status(404).json({
-            message: err.message,
-            error: err,
-        });
+    if (err instanceof DefaultError) {
+        const errorResponse = err.toResponse();
+
+        res.status(errorResponse.status_code).send(errorResponse);
+
         return;
     }
 
-    if (err.name === 'ZodError') {
-        res.status(422).json({
-            message: 'Validation Error',
-            error: err,
-        });
-        return;
-    }
+    const internalError = new InternalServerError({ cause: err })
+    const internalErrorResponse = internalError.toResponse()
+    console.error(internalError)
 
-    res.status(500).json({
-        message: 'Internal Server Error',
-        error: err,
-    });
+    res.status(internalErrorResponse.status_code).send(internalErrorResponse);
 }
